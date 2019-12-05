@@ -1,3 +1,4 @@
+'use strict';
 //Floatygons.js
 //By Styn van de Haterd @ 2019
 class Floatygons{
@@ -186,5 +187,13 @@ class Floatygons{
         this.setup();
         this.clearScreen();
         setInterval(this.update, this.options.interval);
+    };
+
+    stop = () =>{
+        this.options.interval = 0;
+    };
+
+    restart = () =>{
+        this.options.interval = 1000 / this.options.fps;
     };
 }
