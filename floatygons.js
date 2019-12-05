@@ -193,7 +193,7 @@ class Floatygons{
         this.options.interval = 0;
     };
 
-    restart = () =>{
+    resume = () =>{
         this.options.interval = 1000 / this.options.fps;
     };
 }
