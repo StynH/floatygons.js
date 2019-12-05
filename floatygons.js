@@ -27,7 +27,7 @@ class Floatygons{
         this.dots = [];
     };
 
-    extendDefaults(source, properties){
+    extendDefaults = (source, properties) => {
         let property;
         for (property in properties) {
             if (properties.hasOwnProperty(property)) {
@@ -37,11 +37,11 @@ class Floatygons{
         return source;
     };
 
-    getRandom(min, max){
+    getRandom = (min, max) => {
         return Math.floor(Math.random() * (max - min + 1) ) + min;
     };
 
-    increaseBrightness(hex, lum){
+    increaseBrightness = (hex, lum) =>{
         hex = String(hex).replace(/[^0-9a-f]/gi, "");
 
         if (hex.length < 6) {
@@ -58,7 +58,7 @@ class Floatygons{
         return rgb;
     };
 
-    spawnDot(){
+    spawnDot = () =>{
         return {
             x: this.getRandom(0, this.canvasWidth),
             y: this.getRandom(0, this.canvasHeight),
@@ -69,11 +69,11 @@ class Floatygons{
         };
     };
 
-    manhattanDistance(dotA, dotB){
+    manhattanDistance = (dotA, dotB) =>{
         return Math.abs(dotB.x - dotA.x) + Math.abs(dotB.y - dotA.y);
     };
 
-    seekConnection(dot){
+    seekConnection = (dot) => {
         for(let other of this.dots){
             if(other === dot) continue;
 
@@ -88,7 +88,7 @@ class Floatygons{
         return undefined;
     };
 
-    setup(){
+    setup = () =>{
         this.canvas = document.querySelector(this.options.canvasId);
         this.ctx =  this.canvas.getContext("2d");
 
@@ -105,12 +105,12 @@ class Floatygons{
         }
     };
 
-    clearScreen() {
+    clearScreen = () => {
         this.ctx.fillStyle = this.options.clearColor;
         this.ctx.fillRect(0, 0, this.canvasWidth, this.canvasHeight);
     };
 
-    drawLine(dotA, dotB){
+    drawLine = (dotA, dotB) => {
         this.ctx.strokeStyle = this.increaseBrightness(this.options.lineColor, -(this.manhattanDistance(dotA, dotB) / this.options.maxDistance) + 0.075);
         this.ctx.beginPath();
         this.ctx.moveTo(dotA.x + this.options.dotSize / 2, dotA.y + this.options.dotSize / 2);
@@ -118,7 +118,7 @@ class Floatygons{
         this.ctx.stroke();
     };
 
-    drawDot(dot){
+    drawDot = (dot) => {
         for(let connection of dot.connections){
             this.drawLine(dot, connection);
         }
@@ -127,7 +127,7 @@ class Floatygons{
         this.ctx.fillRect(dot.x,dot.y, this.options.dotSize, this.options.dotSize);
     };
 
-    updateDot(dot){
+    updateDot = (dot) => {
         dot.x += dot.vx * (this.options.interval / 1000.0);
         dot.y += dot.vy * (this.options.interval / 1000.0);
 
@@ -155,7 +155,7 @@ class Floatygons{
         }
     };
 
-    update() {
+    update = () => {
         this.clearScreen();
 
         let i = this.dots.length - 1;
@@ -183,17 +183,17 @@ class Floatygons{
         }
     };
 
-    start(){
+    start = () =>{
         this.setup();
         this.clearScreen();
         setInterval(this.update, this.options.interval);
     };
 
-    stop(){
+    stop = () =>{
         this.options.interval = 0;
     };
 
-    resume(){
+    resume = () =>{
         this.options.interval = 1000 / this.options.fps;
     };
 }
