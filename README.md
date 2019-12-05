@@ -29,6 +29,6 @@ f.start();
 //Use stop() to pause.
 f.stop();
 
-//Use restart() to start again.
-f.restart();
+//Use resume() to start again.
+f.resume();
 ```
