@@ -123,9 +123,10 @@ var Floatygons = function Floatygons() {
     if (_this.options.rescaleToParent) {
       _this.ctx.canvas.width = parent.clientWidth;
       _this.ctx.canvas.height = parent.clientHeight;
-      _this.canvasWidth = _this.ctx.canvas.width;
-      _this.canvasHeight = _this.ctx.canvas.height;
     }
+
+    _this.canvasWidth = _this.ctx.canvas.width;
+    _this.canvasHeight = _this.ctx.canvas.height;
 
     for (var i = 0; i < _this.options.maxDotsAlive; ++i) {
       _this.dots.push(_this.spawnDot());

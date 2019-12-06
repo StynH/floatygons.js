@@ -1,10 +1,12 @@
 <html>
-    <div style="width: 1900px; height: 900px">
+    <div style="width: 600px; height: 1200px">
 		<canvas id="floatygonCanvas" width="1900" height="900"></canvas>
 	</div>
-    <script src="floatygons.js"></script>
+    <script src="dst/floatygons-min.js"></script>
     <script>
-        const floatygons = Floatygons();
+        const floatygons = new Floatygons({
+			rescaleToParent: false
+		});
         floatygons.start();
     </script>
 </html>
