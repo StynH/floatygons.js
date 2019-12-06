@@ -197,3 +197,5 @@ class Floatygons{
         this.options.interval = 1000 / this.options.fps;
     };
 }
+
+module.exports.Floatygons = Floatygons;
