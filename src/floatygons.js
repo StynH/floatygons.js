@@ -13,7 +13,8 @@ class Floatygons{
             maxDotSpeed: 20,
             maxConnections: 3,
             maxDistance: 200,
-            fps: 144
+            fps: 144,
+            rescaleToParent: true
         };
 
         if (arguments[0] && typeof arguments[0] === "object") {
@@ -94,8 +95,10 @@ class Floatygons{
 
         const parent = this.canvas.parentElement;
 
-        this.ctx.canvas.width = parent.clientWidth;
-        this.ctx.canvas.height = parent.clientHeight;
+        if(this.options.rescaleToParent){
+            this.ctx.canvas.width = parent.clientWidth;
+            this.ctx.canvas.height = parent.clientHeight;
+        }
 
         this.canvasWidth = this.ctx.canvas.width;
         this.canvasHeight = this.ctx.canvas.height;
@@ -197,5 +200,3 @@ class Floatygons{
         this.options.interval = 1000 / this.options.fps;
     };
 }
-
-module.exports.Floatygons = Floatygons;
