@@ -119,10 +119,13 @@ var Floatygons = function Floatygons() {
     _this.canvas = document.querySelector(_this.options.canvasId);
     _this.ctx = _this.canvas.getContext("2d");
     var parent = _this.canvas.parentElement;
-    _this.ctx.canvas.width = parent.clientWidth;
-    _this.ctx.canvas.height = parent.clientHeight;
-    _this.canvasWidth = _this.ctx.canvas.width;
-    _this.canvasHeight = _this.ctx.canvas.height;
+
+    if (_this.options.rescaleToParent) {
+      _this.ctx.canvas.width = parent.clientWidth;
+      _this.ctx.canvas.height = parent.clientHeight;
+      _this.canvasWidth = _this.ctx.canvas.width;
+      _this.canvasHeight = _this.ctx.canvas.height;
+    }
 
     for (var i = 0; i < _this.options.maxDotsAlive; ++i) {
       _this.dots.push(_this.spawnDot());
@@ -265,7 +268,8 @@ var Floatygons = function Floatygons() {
     maxDotSpeed: 20,
     maxConnections: 3,
     maxDistance: 200,
-    fps: 144
+    fps: 144,
+    rescaleToParent: true
   };
 
   if (arguments[0] && _typeof(arguments[0]) === "object") {
