@@ -22,7 +22,8 @@ const f = new Floatygons({
     maxDotSpeed: 20,
     maxConnections: 3,
     maxDistance: 200,
-    fps: 144
+    fps: 144,
+    rescaleToParent: true
 });
 
 //Use start() only once to begin.
