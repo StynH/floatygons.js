@@ -14,7 +14,8 @@ class Floatygons{
             maxConnections: 3,
             maxDistance: 200,
             fps: 144,
-            rescaleToParent: true
+            rescaleToParent: true,
+            enforceConnectionStrain: false
         };
 
         if (arguments[0] && typeof arguments[0] === "object") {
@@ -82,6 +83,7 @@ class Floatygons{
             if(distance < this.options.maxDistance
                 && other.connections.filter(d => d === dot).length === 0
                 && dot.connections.filter(d => d === other).length === 0
+                && (!this.options.enforceConnectionStrain || other.connections.length < this.options.maxConnections)
             ){
                 return other;
             }
@@ -145,6 +147,10 @@ class Floatygons{
             const connection = this.seekConnection(dot);
             if(connection !== undefined){
                 dot.connections.push(connection);
+
+                if(this.options.enforceConnectionStrain){
+                    connection.connections.push(dot);
+                }
             }
         }
 

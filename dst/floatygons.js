@@ -79,7 +79,7 @@ var Floatygons = function Floatygons() {
           return d === dot;
         }).length === 0 && dot.connections.filter(function (d) {
           return d === other;
-        }).length === 0) {
+        }).length === 0 && (!_this.options.enforceConnectionStrain || other.connections.length < _this.options.maxConnections)) {
           return {
             v: other
           };
@@ -197,6 +197,10 @@ var Floatygons = function Floatygons() {
 
       if (connection !== undefined) {
         dot.connections.push(connection);
+
+        if (_this.options.enforceConnectionStrain) {
+          connection.connections.push(dot);
+        }
       }
     } //Check existing connections
 
@@ -270,7 +274,8 @@ var Floatygons = function Floatygons() {
     maxConnections: 3,
     maxDistance: 200,
     fps: 144,
-    rescaleToParent: true
+    rescaleToParent: true,
+    enforceConnectionStrain: false
   };
 
   if (arguments[0] && _typeof(arguments[0]) === "object") {
