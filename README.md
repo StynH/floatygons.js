@@ -23,7 +23,8 @@ const f = new Floatygons({
     maxConnections: 3,
     maxDistance: 200,
     fps: 144,
-    rescaleToParent: true
+    rescaleToParent: true,
+    enforceConnectionStrain: false
 });
 
 //Use start() only once to begin.
@@ -36,3 +37,4 @@ f.stop();
 //Use resume() to start again.
 f.resume();
 ```
+Use the ```enforceConnectionStrain``` to hard enable a hard constraint. Normally, dots can be connected to the value from ```maxConnections``` but outside connections are still allowed. Setting ```enforceConnectionStrain``` to ```true``` will prevent outside connections.
