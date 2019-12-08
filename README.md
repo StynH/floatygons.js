@@ -37,4 +37,4 @@ f.stop();
 //Use resume() to start again.
 f.resume();
 ```
-Use the ```enforceConnectionStrain``` to hard enable a hard constraint. Normally, dots can be connected to the value from ```maxConnections``` but outside connections are still allowed. Setting ```enforceConnectionStrain``` to ```true``` will prevent outside connections.
+Use the ```enforceConnectionStrain``` to enable a hard constraint. Normally, dots can be connected to the amount of neighbours from ```maxConnections``` but outside connections are still allowed (So connections are 1 way, and not counted on the other side). Setting ```enforceConnectionStrain``` to ```true``` will prevent outside connections.
