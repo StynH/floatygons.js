@@ -12,6 +12,14 @@ var Floatygons = function Floatygons() {
 
   _classCallCheck(this, Floatygons);
 
+  _defineProperty(this, "resizeFunction", function (event) {
+    var parent = _this.canvas.parentElement;
+    _this.ctx.canvas.width = parent.clientWidth;
+    _this.ctx.canvas.height = parent.clientHeight;
+    _this.canvasWidth = _this.ctx.canvas.width;
+    _this.canvasHeight = _this.ctx.canvas.height;
+  });
+
   _defineProperty(this, "extendDefaults", function (source, properties) {
     var property;
 
@@ -286,4 +294,8 @@ var Floatygons = function Floatygons() {
 
   this.options.interval = 1000 / this.options.fps;
   this.dots = [];
+
+  if (this.options.rescaleToParent) {
+    window.onresize = this.resizeFunction;
+  }
 };

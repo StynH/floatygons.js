@@ -1,4 +1,7 @@
 'use strict';
+
+const ResizeSensor = require("resize-sensor");
+
 //Floatygons.js
 //By Styn van de Haterd @ 2019
 class Floatygons{
@@ -27,6 +30,18 @@ class Floatygons{
 
         this.options.interval = 1000 / this.options.fps;
         this.dots = [];
+
+        if(this.options.rescaleToParent) {
+            window.onresize = this.resizeFunction;
+        }
+    };
+
+    resizeFunction = (event) =>{
+        this.ctx.canvas.width = parent.clientWidth;
+        this.ctx.canvas.height = parent.clientHeight;
+
+        this.canvasWidth = this.ctx.canvas.width;
+        this.canvasHeight = this.ctx.canvas.height;
     };
 
     extendDefaults = (source, properties) => {
